@@ -1,5 +1,5 @@
-export const getUsers = async () => {
-  const apiUrl = `/data/users.json`;
+export const getTables = async () => {
+  const apiUrl = `/data/tables.json`;
 
   let options = {
     method: "GET",

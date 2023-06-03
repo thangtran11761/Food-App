@@ -16,3 +16,17 @@
   font-size: 2rem;
   margin-top: 0;
 }
+
+.summary div {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.summary div p {
+  width: 25%;
+  box-sizing: border-box;
+  padding: 16px;
+  margin: 16px;
+  cursor: pointer;
+}
+

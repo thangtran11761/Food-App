@@ -1,19 +1,49 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import classes from "./MealsSummary.module.css";
+import { getTables } from "../../services/httpRequest";
+import CartContext from "../../store/cart-context";
 
 const MealsSummary = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const [tables, setTables] = useState([]);
+  const [choose, setChoose] = useState(cartCtx.tableChoosed);
+
+  useEffect(() => {
+    getTables().then((res) => setTables(res));
+  }, []);
+
+  const chooseTableHandler = (id) => {
+    setChoose(id);
+    cartCtx.setTableChoosed(id);
+  };
+
   return (
     <section className={classes.summary}>
-      <h2>Delicious Food, Delivered To You</h2>
-      <p>
-        Choose your favorite meal from our broad selection of available meals
-        and enjoy a delicious lunch or dinner at home.
-      </p>
-      <p>
-        All our meals are cooked with high-quality ingredients, just-in-time and
-        of course by experienced chefs!
-      </p>
+      <h2>Choose table</h2>
+      <div>
+        {tables.map((table) => {
+          const colorBorder = table.status === "booked" ? "red" : "green";
+          const active = {
+            backgroundColor: "#fff",
+            color: " #000",
+            border: `5px solid ${colorBorder}`,
+          };
+          const notActive = {
+            border: `5px solid ${colorBorder}`,
+          };
+          return (
+            <p
+              key={table.id}
+              style={table.id === choose ? active : notActive}
+              onClick={() => chooseTableHandler(table.id)}
+            >
+              {table.id}
+            </p>
+          );
+        })}
+      </div>
     </section>
   );
 };
