@@ -1,0 +1,17 @@
+[
+  {
+    "id": 10,
+    "name": "Bàn số 10",
+    "status": "booked"
+  },
+  {
+    "id": 11,
+    "name": "Bàn số 11",
+    "status": "ready"
+  },
+  {
+    "id": 12,
+    "name": "Bàn số 12",
+    "status": "ready"
+  }
+]
